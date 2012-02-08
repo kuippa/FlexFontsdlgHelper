@@ -1,0 +1,57 @@
+<html lang="jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache">
+<title>Sample2</title>
+<script language="JavaScript">
+    var jsReady = false;
+    function pageInit() {
+        jsReady = true;
+    }
+
+    function isReady() {
+        return jsReady;
+    }
+
+    function thisSwf(objName) {
+        if (navigator.appName.indexOf("Microsoft") != -1) {
+            return window[objName];
+        } else {
+            return document[objName];
+        }
+    }
+
+    function sendToActionScript(value) {
+        thisSwf("dlgHelper").asListener(value);
+    }
+
+    function jsListener(value) {
+		document.forms["frm"].output.value += "ActionScript says: " + value + "\n";
+    }
+
+</script>
+</head>
+<body onload="pageInit();" background="000000">
+     <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+             id="dlgHelper" width="600" height="400"
+             codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
+         <param name="movie" value="FontsHelper.swf" />
+         <param name="quality" value="high" />
+         <param name="bgcolor" value="#ff0000" />
+         <param name="allowScriptAccess" value="sameDomain" />
+         <param name="FlashVars" value="viewmode=1"></param>
+         <embed src="FontsHelper.swf" quality="high" bgcolor="#869ca7"
+             width="600" height="400" name="dlgHelper" align="middle"
+             play="true" loop="false" quality="high" allowScriptAccess="sameDomain"
+             type="application/x-shockwave-flash"
+             FlashVars="viewmode=1"
+             pluginspage="http://www.macromedia.com/go/getflashplayer">
+         </embed>
+     </object>
+	<form name="frm" id="frm" onsubmit="return false;">
+	<input type="button" value="get fontlist by code" onclick="sendToActionScript('');" /><br />
+	<textarea cols="60" rows="20" name="output" readonly="true"></textarea>
+	</form>
+</body>
+</html>

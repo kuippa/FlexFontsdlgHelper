@@ -1,0 +1,41 @@
+http://livedocs.adobe.com/flex/3_jp/html/help.html?content=passingarguments_5.html
+
+	
+// 
+private function testFontspv():void 
+{
+	clearCvs();
+	var selectFont:String = "あんずもじ";
+	//var _txtf:UITextField = new UITextField();
+	//var _format:UITextFormat = new UITextFormat(systemManager.topLevelSystemManager);
+	var _txtf:TextField = new TextField();
+	var _format:TextFormat = new TextFormat();
+	var byteArray:ByteArray = new　ByteArray();
+	var html:String = byteArray.readMultiByte(byteArray.length, "shift-jis");		
+	with (_format) {
+		size = 60;
+		font = selectFont;
+		//byteArray.writeMultiByte('あんずもじ','shift-jis');
+		//font = byteArray.toString();
+		//font = byteArray;
+		//font = "あんずもじ";
+		//font = "_明朝";
+		color = 0xFF0000; 
+		letterSpacing = 50;
+	}
+	_txtf.autoSize = TextFieldAutoSize.LEFT;
+	_txtf.background = true;
+	_txtf.border = true;
+	_txtf.antiAliasType = flash.text.AntiAliasType.ADVANCED;
+	_txtf.embedFonts = false;	// It's need since Flex4
+	//_txtf.antiAliasType = flash.text.AntiAliasType.NORMAL;
+	_txtf.defaultTextFormat = _format;
+	_txtf.setTextFormat(_format);
+	_txtf.text = _format.font;
+	_txtf.width = 300;
+			
+	var cvsUI:UIComponent = new UIComponent();
+	cvsUI.addChild(_txtf);
+	cvs.validateNow();
+	cvs.addChild(cvsUI);
+}

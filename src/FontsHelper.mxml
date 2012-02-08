@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+	verticalScrollPolicy = "off"
+	horizontalScrollPolicy = "off"
+    creationComplete="Init();"
+	layout="absolute"> 
+	<mx:Script source="main.as"/>
+	<mx:Canvas id="cvs" x="50" y="50" width="400" height="200"></mx:Canvas>
+
+</mx:Application>

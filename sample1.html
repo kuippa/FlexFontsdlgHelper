@@ -1,0 +1,75 @@
+<html lang="jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache">
+<title>Sample1</title>
+<script language="JavaScript">
+    var jsReady = false;
+	var idTimer;
+
+    function pageInit() {
+        jsReady = true;
+    }
+
+	// call from ActionScript
+    function isReady() {
+		idTimer = setTimeout("asReady()", 60);
+        return jsReady;
+    }
+
+    function asReady() {
+		sendToActionScript('');
+    }
+
+    function thisSwf(objName) {
+        if (navigator.appName.indexOf("Microsoft") != -1) {
+            return window[objName];
+        } else {
+            return document[objName];
+        }
+    }
+
+    function sendToActionScript(value) {
+        thisSwf("dlgHelper").asListener(value);
+    }
+
+	// call from ActionScript
+    function jsListener(value) {
+		clearTimeout(idTimer);
+//		document.forms["frm"].output.value += "ActionScript says: " + value + "\n";
+		var resArray = value.split(",");
+	    for (var i = 0; i < resArray.length; i++) {
+			frm.fontlist.length++;
+			var sfont = resArray[i];
+			frm.fontlist.options[i].text = sfont;
+		}  
+
+    }
+
+</script>
+</head>
+<body onload="pageInit();" background="000000">
+     <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+             id="dlgHelper" width="0" height="0"
+             codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
+         <param name="movie" value="FontsHelper.swf" />
+         <param name="quality" value="high" />
+         <param name="bgcolor" value="#ff0000" />
+         <param name="allowScriptAccess" value="sameDomain" />
+         <param name="FlashVars" value="viewmode=0"></param>
+         <embed src="FontsHelper.swf" quality="high" bgcolor="#869ca7"
+             width="0" height="0" name="dlgHelper" align="middle"
+             play="true" loop="false" quality="high" allowScriptAccess="sameDomain"
+             type="application/x-shockwave-flash"
+             FlashVars="viewmode=0"
+             pluginspage="http://www.macromedia.com/go/getflashplayer">
+         </embed>
+     </object>
+	<form name="frm" id="frm" onsubmit="return false;">
+	<select id="fontlist" name="fontlist" size="15"></select>
+
+	</form>
+
+</body>
+</html>
