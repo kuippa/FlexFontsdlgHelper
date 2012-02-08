@@ -1,6 +1,7 @@
 import flash.display.*;
 import flash.text.*;
 import flash.utils.*;
+import flash.system.Security;
 import mx.core.*;
 import mx.controls.*;
 import mx.events.*;
@@ -15,6 +16,7 @@ private var _fontslist:Array;
 private function Init():void 
 {
 	try {
+		Security.allowDomain("*");
 		var clsFonts:clsFont = new clsFont();
 		_clsNets = new clsNet();
 		_fontslist = clsFonts.getFontsList();
